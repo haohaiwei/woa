@@ -1,6 +1,6 @@
 ## Alertmanager Woa Webhook
 
-Webhook service support send Prometheus 2.0 alert message to Woa.
+推送告警到金山协作
 
 ## How To Use
 
