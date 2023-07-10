@@ -8,19 +8,19 @@ import (
 )
 
 // TransformToMarkdown transform alertmanager notification to dingtalk markdow message
-func TransformToMarkdown(notification model.Notification) (markdown *model.WoaMarkdown, robotURL string, err error) {
+func TransformToMarkdown(notification model.Notification, cluster string) (markdown *model.WoaMarkdown, robotURL string, err error) {
 
-	groupKey := notification.GroupKey
 	status := notification.Status
+	alertname := notification.GroupLabels["alertname"]
 
 	annotations := notification.CommonAnnotations
 	robotURL = annotations["woaRobot"]
 
 	var buffer bytes.Buffer
 
-	buffer.WriteString(fmt.Sprintf("### 通知组%s(当前状态:%s) \n", groupKey, status))
-
-	buffer.WriteString(fmt.Sprintf("#### 告警项:\n"))
+	buffer.WriteString(fmt.Sprintf("#### 告警集群: %s\n", cluster))
+	buffer.WriteString(fmt.Sprintf("##### 告警项: %s\n", alertname))
+	buffer.WriteString(fmt.Sprintf("##### 当前状态: %s\n", status))
 
 	for _, alert := range notification.Alerts {
 		annotations := alert.Annotations

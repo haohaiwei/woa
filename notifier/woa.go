@@ -11,9 +11,9 @@ import (
 )
 
 // Send send markdown message to woa
-func Send(notification model.Notification, defaultRobot string) (err error) {
+func Send(notification model.Notification, defaultRobot string, cluster string) (err error) {
 
-	markdown, robotURL, err := transformer.TransformToMarkdown(notification)
+	markdown, robotURL, err := transformer.TransformToMarkdown(notification, cluster)
 
 	if err != nil {
 		return

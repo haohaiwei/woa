@@ -5,18 +5,20 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/haohaiwei/woa/model"
+	model "github.com/haohaiwei/woa/model"
 	"github.com/haohaiwei/woa/notifier"
 )
 
 var (
 	h            bool
 	defaultRobot string
+	cluster      string
 )
 
 func init() {
 	flag.BoolVar(&h, "h", false, "help")
 	flag.StringVar(&defaultRobot, "defaultRobot", "", "global woa robot webhook, you can overwrite by alert rule with annotations woaRobot")
+	flag.StringVar(&cluster, "cluster", "", "cluster name")
 }
 
 func main() {
@@ -39,7 +41,7 @@ func main() {
 			return
 		}
 
-		err = notifier.Send(notification, defaultRobot)
+		err = notifier.Send(notification, defaultRobot, cluster)
 
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

@@ -7,11 +7,11 @@ Webhook service support send Prometheus 2.0 alert message to Woa.
 ```
 cd cmd/webhook
 go build
-webhook -defaultRobot=https://xz.wps.cn/api/v1/webhook/send?key=xxx
+webhook -defaultRobot=https://xz.wps.cn/api/v1/webhook/send?key=xxx -cluster xxx
 ```
 
 ```
-go run webhook.go -defaultRobot=https://xz.wps.cn/api/v1/webhook/send?key=xxx
+go run webhook.go -defaultRobot=https://xz.wps.cn/api/v1/webhook/send?key=xxx -cluster xxx
 ```
 
 * -defaultRobot: default dingtalk webhook url, all notifaction from alertmanager will direct to this webhook address.
