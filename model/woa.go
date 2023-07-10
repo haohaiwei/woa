@@ -1,8 +1,5 @@
 package model
 
-type WoaMessage struct {
-}
-
 type WoaMarkdown struct {
 	MsgType  string    `json:"msgtype"`
 	Markdown *Markdown `json:"markdown"`

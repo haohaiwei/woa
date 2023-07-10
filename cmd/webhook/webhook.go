@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	model "github.com/haohaiwei/woa/model"
+	"github.com/haohaiwei/woa/model"
 	"github.com/haohaiwei/woa/notifier"
 )
 
@@ -49,5 +49,5 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "send to woa successful!"})
 
 	})
-	router.Run()
+	router.Run(":8098")
 }

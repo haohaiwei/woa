@@ -3,7 +3,7 @@ package notifier
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/haohaiwei/woa/model"
@@ -42,7 +42,7 @@ func Send(notification model.Notification, defaultRobot string) (err error) {
 		bytes.NewBuffer(data))
 
 	if err != nil {
-		fmt.Println("woa robot url not found ignore:")
+		log.Println("woa robot url not found ignore:")
 		return
 	}
 
@@ -51,12 +51,14 @@ func Send(notification model.Notification, defaultRobot string) (err error) {
 	resp, err := client.Do(req)
 
 	if err != nil {
+		log.Println(err)
+		log.Println(data)
 		return
 	}
 
 	defer resp.Body.Close()
-	fmt.Println("response Status:", resp.Status)
-	fmt.Println("response Headers:", resp.Header)
+	log.Println("response Status:", resp.Status)
+	log.Println("response Headers:", resp.Header)
 
 	return
 }
