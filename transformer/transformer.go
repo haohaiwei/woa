@@ -33,9 +33,6 @@ func TransformToMarkdown(notification model.Notification) (markdown *model.WoaMa
 		Markdown: &model.Markdown{
 			Text: buffer.String(),
 		},
-		At: &model.At{
-			IsAtAll: false,
-		},
 	}
 
 	return
